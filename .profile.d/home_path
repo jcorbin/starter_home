@@ -1,4 +1,7 @@
 #!/bin/bash
+# before: path
+# after: arrayutil
+# after: sbin_path
 
 # add_home_paths adds ~/bin and ~/.local/bin to $PATH if they exist.
 add_home_paths()

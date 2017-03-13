@@ -1,4 +1,5 @@
 #!/bin/bash
+# after: term
 
 if which less>/dev/null; then
     PAGER="$(which less)"
