@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO shard this to ~/.aliases.d
+
 # Safer rm/mv/cp by default
 alias rm='rm -vi'
 alias mv='mv -vi'
@@ -8,6 +10,17 @@ alias cp='cp -vi'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
+
+alias tnw="quotecmd -o tmux new-window --"
+alias tsh="quotecmd -o tmux split-window -h --"
+alias tsv="quotecmd -o tmux split-window -v --"
+
+if [ -x "$(command -v nvim 2>/dev/null)" ]; then
+    alias vi='nvim'
+    alias vim='nvim'
+    alias vimdiff='nvim -dO'
+    alias view='nvim -R'
+fi
 
 # More userfriendly output from ls
 # shellcheck disable=2010
@@ -31,4 +44,11 @@ if chown --version 2>/dev/null | grep -qm1 GNU; then
     alias chown='chown -c'
 else
     alias chown='chown -v'
+fi
+
+# TODO feature detect GNU ps like above
+if [ -n "$USE_GNU" ]; then
+    alias ps="ps --forest -w"
+else
+    alias ps="ps -w"
 fi
