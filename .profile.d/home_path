@@ -1,4 +1,8 @@
 #!/bin/bash
+# before: path
+# after: arrayutil
+# after: usr_local_path
+# after: sbin_path
 
 # add_home_paths adds ~/bin and ~/.local/bin to $PATH if they exist.
 add_home_paths()
@@ -10,6 +14,16 @@ add_home_paths()
 
     # shellcheck disable=2086
     [ -d "$HOME/bin" ] && PATH=$(prepend "$HOME/bin" $PATH)
+
+    if [ -d "$HOME/Library/Python" ]; then
+        for python_lib in $HOME/Library/Python/*; do
+            if [ -d "$python_lib" ]; then
+                # shellcheck disable=2086
+                PATH=$(prepend "$python_lib/bin" $PATH)
+                break
+            fi
+        done
+    fi
 
     export PATH
 }

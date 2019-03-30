@@ -31,6 +31,7 @@
 [rebase]
     stat = true # show a summary by default
     autosquash = true # honor commit markers like `fixup!`
+    instructionFormat = [%ad] <%an> %s %d
 
 [rerere]
     # remember and re-use merge conflict resolutions
@@ -39,41 +40,79 @@
 
 # log formats
 [pretty]
-    brief = %C(red)%h%Creset %C(green)%cd %Creset-%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset
-    briefreflog = %C(green)%gd %C(red)%h%Creset %Creset- %gs %C(bold blue)<%gn>%Creset
+    brief = %C(red)%h%Creset %C(green)%ad%Creset %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset
+    briefbody = %C(red)%h%Creset %C(green)%ad%Creset %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset%n%n%-b
+    briefreflog = %C(green)%gd %C(red)%h%Creset %C(bold blue)<%gn>%Creset %gs
 
 # Command aliases
 [alias]
+    ap = add -p
     au = add --update
     br = branch
     brav = branch -av
     brv = branch -v
+    cf = clean -f
+    ch = cherry -v
     ci = commit
     cia = commit -a
     ciam = commit -a -m
     cic = commit -c
     cim = commit -m
+    cix = commit --allow-empty -m 'Ex Nihilo'
+    cn = clean -n
     co = checkout
-    coB = checkout --no-track -B
-    cob = checkout -b
-    cod = checkout --detach
     cp = cherry-pick
     dc = diff --cached
     doh = commit --amend --no-edit
     dohe = commit --amend --edit
-    lb = log --pretty=brief
-    lbf = log --first-parent --pretty=brief
     lg = log --graph --pretty=brief
-    lga = log --first-parent --graph --pretty=brief --all
-    lgb = log --first-parent --graph --pretty=brief --branches
+    lga = log --graph --pretty=brief --all
+    lgb = log --graph --pretty=brief --branches
     lgf = log --first-parent --graph --pretty=brief
-    phub = !git push -u origin $(basename $(git symbolic-ref HEAD)) && hub pull-request create
-    pub = !git push -u origin $(basename $(git symbolic-ref HEAD))
+    lb = log --graph --pretty=briefbody
+    lba = log --graph --pretty=briefbody --all
+    lbb = log --graph --pretty=briefbody --branches
+    lbf = log --first-parent --graph --pretty=briefbody
+    pub = !git push -u origin $(git symbolic-ref HEAD | sed -e 's~^refs/heads/~~')
     ra = rebase --abort
     rb = rebase
     rc = rebase --continue
     redo = reset HEAD^ --mixed
-    rlg = reflog --pretty=briefreflog
+    rem = remote
+    remv = remote -v
     rs = rebase --skip
+    rst = reset --hard
     st = status --short --branch
     suri = submodule update --recursive --init
+    uewu = config user.email jcorbin@wunjo.org
+    mrg = merge --no-edit --no-ff
+    mark = commit -m mark --allow-empty
+    fp = merge-base --fork-point
+
+# Commiter identity
+[user]
+    email = jcorbin@wunjo.org
+    name = Joshua T Corbin
+
+[advice]
+    detachedHead = false
+    pushNonFastForward = false
+    statusHints = false
+
+[apply]
+    # Fix all whitespace sins when applying patches
+    whitespace = fix
+
+[pack]
+    # Use one thread per processor core for pac king
+    threads = 0
+
+[push]
+    default = simple
+
+[http]
+    followRedirects = true
+
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+    pushInsteadOf = https://github.com/

@@ -1,4 +1,5 @@
 #!/bin/bash
+# after: term
 
 if [ -d ~/.dircolors ] && type dircolors &>/dev/null; then
     if [ "$(tput colors)" -eq 256 ]; then
