@@ -1,0 +1,8 @@
+#!/bin/bash
+# before: path
+# after: arrayutil
+# after: sbin_path
+
+export PATH=$(IFS=:; prepend /usr/local/sbin $PATH)
+export PATH=$(IFS=:; prepend /usr/local/bin $PATH)
+export PATH=$(IFS=:; prepend /usr/local/git/bin $PATH)

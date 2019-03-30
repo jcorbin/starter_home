@@ -1,0 +1,6 @@
+#!/bin/sh
+# before: python
+# after: arrayutil
+# after: bootstrap
+
+[ -d "$HOME/lib/python" ] && export PYTHONPATH=$(IFS=:; prepend "$HOME/lib/python" $PYTHONPATH)
