@@ -6,3 +6,25 @@
 !git-setup-worktree-push
 !githook-update-worktree-post-receive
 !githook-update-worktree-update
+
+!atmux
+!atmux.py
+!choose-screen
+!chroot-system
+!dotgit
+!git-branch-base
+!git-clique
+!git-current-branch
+!git-fix-userid
+!git-rewrite-branch
+!git-shell-pack
+!git-subtree
+!git-work
+!pkgit
+!quotecmd
+!sshscreen
+
+# Scripts from https://github.com/brendangregg/FlameGraph
+stackcollapse*
+flamegraph.pl
+difffolded.pl

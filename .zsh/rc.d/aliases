@@ -1,0 +1,8 @@
+# Globals
+
+. ~/.aliases
+
+alias mkdir='nocorrect mkdir'
+alias dirs='dirs -pv'
+
+# vim:set ft=zsh:

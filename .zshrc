@@ -9,10 +9,15 @@ else
     source ~/.profile.d/arrayutil
 fi
 
-source ~/.zsh/rc.d/completion
-source ~/.zsh/rc.d/editor
-source ~/.zsh/rc.d/history
-source ~/.zsh/rc.d/highlighting
-source ~/.zsh/rc.d/dirnav
+for part in $(~/bin/deporder -f ~/.zsh/rc.d); do
+    source $part
+done
 
-source ~/.aliases
+# For restoring sanity to MacOS: ~/.profile.d/brew_gnu_path defines re_gnu and
+# no_gnu to subvert much of BSD userspace with GNU alternatives. However we
+# only default such subversion on for interactive shells, so that we don't
+# break scripts written with BSD assumptions.
+re_gnu
+
+# So that $HOME skew doesn't go unnoticed for too long
+git -C "$HOME" status --short

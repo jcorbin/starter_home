@@ -8,6 +8,7 @@
 # XDG home, allow further whitelisting
 !/.config
 /.config/*
+!/.config/flake8
 
 # File types that need to be ignored anywhere:
 .DS_Store
@@ -20,6 +21,7 @@
 # Common shell environment and configuration
 !.profile
 !.profile.d/
+.profile.d/tokens
 !.aliases
 !.dircolors/
 !.inputrc
@@ -45,11 +47,22 @@
 # TMux config
 !.tmux*.conf
 
-# (Neo)Vim Config
-!.vimrc
+# NeoVim Config
 !/.config/nvim
 .config/nvim/*
 !/.config/nvim/init.vim
+
+# Vim Config
+!.vimrc
+!/.vim
+/.vim/*
+!/.vim/snippets
+
+!.xinitrc
+!.xsession
+!.Xresources
+!.screenrc
+!.terminfo.src/
 
 # For starter_home itself, you'll probably want to drop these
 !README.md
