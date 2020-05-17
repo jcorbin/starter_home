@@ -11,6 +11,7 @@
 !atmux.py
 !choose-screen
 !chroot-system
+!deporder
 !dotgit
 !git-branch-base
 !git-clique
